@@ -17,6 +17,7 @@ void afficher_plateau(short nbr_batonnets, char* tab) {
     char car = 'A';
 
     // Bord du haut
+    printf("\n");
     for (short i = 0; i < 3 * nbr_batonnets + 2; i++) printf("=");
     printf("\n");
 
@@ -65,7 +66,10 @@ void afficher_menu(short id_joueur, short echec) {
     printf("\t-----------\n");
 
     // Afficher message
-    printf("\tBatonnets [A-T] ? : ");
+    if (!echec)
+        printf("\tBatonnets [A-T] ? : ");
+    else
+        printf("\tSaisie eronnee, recommencer\n\tBatonnets [A-T] ? : ");
 }
 
 void afficher_jeu(short nbr_batonnets, char* tab, short id_joueur,

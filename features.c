@@ -22,13 +22,15 @@ int is_empty(char *tab, int taille_tab) {
 }
 
 short saisie_joueur(short id_joueur, char output[4]) {
-    char saisie[4] =
-        "000";  // 3 est le max de batonnets que le joueur peut enlever
-    scanf("%c %c %c", &saisie[0], &saisie[1], &saisie[2]);
+    // 3 est le max de batonnets que le joueur peut enlever
+    char saisie[4] = "000";
 
-    for (int i = 0; i < 3; i++) {
+    scanf("%s", saisie);
+
+    for (int i = 0; i < 3 && saisie[i] != '\0'; i++) {
         if (saisie[i] < 65 || saisie[i] > 90) {
-            return 1;  // Erreur lors de la saisie
+            // Erreur lors de la saisie
+            return 1;
         }
 
         output[i] = saisie[i];
@@ -42,12 +44,6 @@ int enlever_batonnet(char tab_batonnets[20], char choix_joueur[3]) {
         int ascii = (int)choix_joueur[idx];
 
         int idxToRemove = ascii - 65;
-
-        printf("val = %c \n", choix_joueur[idx]);
-
-        printf("ascii = %d \n", ascii);
-
-        printf("idxToRemove = %d \n", idxToRemove);
 
         tab_batonnets[idxToRemove] = '0';
     }

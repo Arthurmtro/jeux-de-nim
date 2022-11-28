@@ -9,6 +9,8 @@
 int main() {
     // Boucle de jeu
     while (1) {
+        short echec = 0;
+
         // Index du tour actuel
         int nb_tours = 0;
         // Initialisation du nbr de batonnets au debut
@@ -25,8 +27,6 @@ int main() {
         while (!is_empty(tab_batonnets, NB_BATONNETS)) {
             // printf("\e[1;1H\e[2J");
 
-            short echec = 0;
-
             afficher_jeu(NB_BATONNETS, tab_batonnets, id_joueur, echec);
 
             // Input du joueur x
@@ -35,13 +35,19 @@ int main() {
 
             echec = saisie_joueur(id_joueur, choix_joueur);
 
-            // if (echec) continue;
+            if (echec) continue;
 
             // Actualisation des datas
 
             enlever_batonnet(tab_batonnets, choix_joueur);
 
             // Changement de joueur
+
+            if (id_joueur % 2 == 0) {
+                id_joueur = 1;
+            } else {
+                id_joueur = 2;
+            }
 
             // Incrementation du tour
 
