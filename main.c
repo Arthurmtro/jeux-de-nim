@@ -1,5 +1,3 @@
-
-
 #include "features.h"
 #include "interface.h"
 #include "stdio.h"
@@ -42,7 +40,6 @@ int main() {
                                      echec);
 
                         // Input du joueur x
-
                         char choix_joueur[4];
 
                         echec = saisie_joueur(id_joueur, choix_joueur,
@@ -51,11 +48,9 @@ int main() {
                         if (echec) continue;
 
                         // Actualisation des datas
-
                         enlever_batonnet(tab_batonnets, choix_joueur);
 
                         // Changement de joueur
-
                         if (id_joueur % 2 == 0) {
                             id_joueur = 1;
                         } else {
@@ -63,10 +58,7 @@ int main() {
                         }
 
                         // Incrementation du tour
-
                         nb_tours++;
-
-                        // Clear de la console
                     }
 
                     if (is_empty(tab_batonnets, NB_BATONNETS)) {
