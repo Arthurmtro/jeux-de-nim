@@ -5,6 +5,8 @@ Project made by
 - [Antoine Beaugas](https://github.com/abeaugas)
 - [Arthur Monteiro](https://github.com/arthurmtro)
 
+[Documentation](https://github.com/Arthurmtro/jeux-de-nim/blob/main/CDC.pdf)
+
 # How to compile
 
 This project use gcc, [https://gcc.gnu.org/](https://gcc.gnu.org/)
