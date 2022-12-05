@@ -88,7 +88,7 @@ void afficher_jeu(short nbr_batonnets, char* tab, short id_joueur,
         "|_| |_|\n            \n            \n");
 
     afficher_plateau(nbr_batonnets, tab);  // Afficher le plateau
-    afficher_menu(id_joueur, echec);
+    afficher_menu(id_joueur, echec);       // Afficher le menu
 }
 
 void afficher_fin(short id_joueur, short nb_tours) {
