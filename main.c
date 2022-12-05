@@ -7,57 +7,93 @@
 #define NB_BATONNETS 20
 
 int main() {
-    // Boucle de jeu
     while (1) {
-        short echec = 0;
+        // Affichage du menu principal
+        menu_principal();
 
-        // Index du tour actuel
-        int nb_tours = 0;
-        // Initialisation du nbr de batonnets au debut
-        char tab_batonnets[NB_BATONNETS];
+        // Choix du menu
+        char choix_menu = '0';
+        scanf("%c", &choix_menu);
 
-        init_tab(tab_batonnets, NB_BATONNETS);
+        switch (choix_menu) {
+            case '1': {
+                // Si le choix est 0, alors on lance le jeu
+                // Boucle de jeu
+                while (1) {
+                    short echec = 0;
 
-        // Init du joueur actuel
-        // 1: Player 1
-        // 2: Player 2
-        short id_joueur = 1;
+                    // Index du tour actuel
+                    short nb_tours = 0;
+                    // Initialisation du nbr de batonnets au debut
+                    char tab_batonnets[NB_BATONNETS];
 
-        // Boucle de jeu
-        while (!is_empty(tab_batonnets, NB_BATONNETS)) {
-            // printf("\e[1;1H\e[2J");
+                    init_tab(tab_batonnets, NB_BATONNETS);
 
-            afficher_jeu(NB_BATONNETS, tab_batonnets, id_joueur, echec);
+                    // Init du joueur actuel
+                    // 1: Player 1
+                    // 2: Player 2
+                    short id_joueur = 1;
 
-            // Input du joueur x
+                    // Boucle de jeu
+                    while (!is_empty(tab_batonnets, NB_BATONNETS)) {
+                        printf("\33c\e[3J");
 
-            char choix_joueur[4];
+                        afficher_jeu(NB_BATONNETS, tab_batonnets, id_joueur,
+                                     echec);
 
-            echec = saisie_joueur(id_joueur, choix_joueur);
+                        // Input du joueur x
 
-            if (echec) continue;
+                        char choix_joueur[4];
 
-            // Actualisation des datas
+                        echec = saisie_joueur(id_joueur, choix_joueur,
+                                              tab_batonnets);
 
-            enlever_batonnet(tab_batonnets, choix_joueur);
+                        if (echec) continue;
 
-            // Changement de joueur
+                        // Actualisation des datas
 
-            if (id_joueur % 2 == 0) {
-                id_joueur = 1;
-            } else {
-                id_joueur = 2;
+                        enlever_batonnet(tab_batonnets, choix_joueur);
+
+                        // Changement de joueur
+
+                        if (id_joueur % 2 == 0) {
+                            id_joueur = 1;
+                        } else {
+                            id_joueur = 2;
+                        }
+
+                        // Incrementation du tour
+
+                        nb_tours++;
+
+                        // Clear de la console
+                    }
+
+                    if (is_empty(tab_batonnets, NB_BATONNETS)) {
+                        // Demande de rejouer si la fin
+                        afficher_fin(id_joueur, nb_tours);
+
+                        char relance;
+                        scanf(" %c", &relance);
+
+                        if (relance == 'y' || relance == 'Y') {
+                            continue;
+                        } else {
+                            break;
+                        }
+                    }
+                }
             }
-
-            // Incrementation du tour
-
-            nb_tours++;
-
-            // Clear de la console
+            case '2': {
+                // Quitter le jeu
+                return 0;
+            }
+            default: {
+                // Erreur de saisie
+                printf("Erreur de saisie, veuillez recommencer.\n");
+                continue;
+            }
         }
-
-        break;
     }
-
     return 0;
 }
